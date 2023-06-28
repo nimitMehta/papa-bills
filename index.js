@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Moment = require('moment');
 
 const app = express();
-const url = process.env.MONGODB_URL;
+const url = `mongodb+srv://${process.env.MONGODB_PASSWORD}:${process.env.MONGODB_PASSWORD}fastners.e3aqj.mongodb.net/bills?retryWrites=true&w=majority`;
 mongoose.connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -220,7 +220,6 @@ app.post('/bill/edit/:billId', async (req, res) => {
 
 app.get('/clients', async (req, res) => {
     const clientsList = await clients.find({});
-    console.log(clients);
     res.render('clients', { clientsList })
 });
 
