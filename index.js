@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Moment = require('moment');
 
 const app = express();
-const url = `mongodb+srv://${process.env.MONGODB_PASSWORD}:${process.env.MONGODB_PASSWORD}fastners.e3aqj.mongodb.net/bills?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}fastners.e3aqj.mongodb.net/bills?retryWrites=true&w=majority`;
 mongoose.connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true,
