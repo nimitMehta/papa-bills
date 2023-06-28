@@ -1,0 +1,427 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Home Page</title>
+        <style>
+            .h-auto{
+                height: auto;
+            }
+
+            .p-2{
+                padding: 5px;
+            }
+
+            .d-flex{
+                display: flex;
+            }
+
+            .flex-column{
+                flex-direction: column;
+            }
+
+            .flex-row{
+                flex-direction: row;
+            }
+
+            .bordered{
+                border: 1px solid black;
+            }
+
+            .p-none{
+                padding: 0;
+            }
+
+            table{
+                border-collapse: collapse;
+            }
+
+            .w-100{
+                width: 100%;
+            }
+
+            .h-100{
+                height: 100%;
+            }
+
+            .text-left{
+                text-align: left;
+            }
+
+            .text-center{
+                text-align: center;
+            }
+
+            .text-right{
+                text-align: right;
+            }
+
+            tr{
+                border-bottom: 1px solid black;
+            }
+
+            td, th{
+                padding: 5px;
+            }
+
+            .text-small{
+                font-size: 12px;
+            }
+
+            .text-medium{
+                font-size: 14px;
+            }
+
+            .text-header{
+                font-size: 27px;
+            }
+
+            .bt{
+                border-top: 1px solid black;
+            }
+
+            .bl{
+                border-left: 1px solid black;
+            }
+
+            .bb{
+                border-bottom: 1px solid black;
+            }
+
+            .br{
+                border-right: 1px solid black;
+            }
+
+            .b-none{
+                border: none;
+            }
+
+            .bt-none{
+                border-top: none;
+            }
+
+            .bl-none{
+                border-left: none;
+            }
+
+            .bb-none{
+                border-bottom: none;
+            }
+
+            .br-none{
+                border-right: none;
+            }
+
+            .flex-tr{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .text-bold{
+                font-weight: bold;
+            }
+
+            .grid-tr{
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .first-inner-grid-tr{
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+            }
+
+            .second-inner-grid-tr{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .last-grid{
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+            }
+
+            .font-bold{
+                font-weight: bold;
+            }
+
+            .main-grid{
+                display: grid;
+                grid-template-rows: 1fr 2fr 1fr;
+            }
+        </style>
+    </head>
+    <body>
+        <table style="width: 100%; margin: 0 auto;" class="bordered">
+            <tbody>
+                <tr class="text-center">
+                    <td class="text-header text-bold">MALLINATH JEWELLERS</td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-small">FLAT NO. 303, SHRI ARIHANT APPARTMENT, DWARKADHISH CHOWK, OPP. SPEEDWEEL HEIGHTS, JIVRAJ PARK, AMBIKA TOWNSHIP, RAJKOT-360005.</td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-medium">MOBILE NO. 9427221690</td>
+                </tr>
+                <tr>
+                    <td class="p-none bb-none">
+                        <table class="bt-none w-100">
+                            <tbody>
+                                <tr>
+                                    <td class="text-left" width = "33%">Debit</td>
+                                    <td class="text-center" width = "33%">TAX INVOICE</td>
+                                    <td class="text-right" width = "34%">Original</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-none bb-none">
+                        <table class="bt-none w-100">
+                            <tbody>
+                                <tr>
+                                    <td style="vertical-align: top; height: 100%;" class="p-none br">
+                                        <table style="overflow: hidden;" class="w-100 h-100 bb">
+                                            <tbody>
+                                                <tr class="first-inner-grid-tr">
+                                                        <td class="br text-bold">M/s. :</td>
+                                                        <td><%= client.name %></td>
+                                                </tr>
+                                                <tr class="first-inner-grid-tr">
+                                                    <td class="br text-bold">Address :</td>
+                                                    <td><%= client.address %></td>
+                                                </tr>
+                                                <tr class="first-inner-grid-tr">
+                                                    <td class="br text-bold">Mo. :</td>
+                                                    <td><%= client.mobile %></td>
+                                                </tr>
+                                                <tr class="first-inner-grid-tr">
+                                                    <td class="br text-bold">GST No. :</td>
+                                                    <td><%= client.gstNumber %></td>
+                                                </tr>
+                                                <tr class="first-inner-grid-tr bb-none h-100">
+                                                    <td class="br text-bold">Place of supply :</td>
+                                                    <td><%= client.placeOfSupply %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td class="p-none">
+                                        <table style="height: 100%;" class="w-100 h-100">
+                                            <tbody>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Invoice No. :</td>
+                                                    <td><%= billData.invoiceNumber %></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Invoice Date :</td>
+                                                    <% const formatDate = function formatDate(date) { %>
+                                                        <% var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear(); %>
+                                                        <% console.log(day.length, month.length) %>
+                                                        <% if (month.length < 2) { %>
+                                                            <% month = '0' + month; %>
+                                                        <% } %>
+                                                        <% if (day.length < 2) { %>
+                                                            <% day = '0' + day; %>
+                                                        <% } %>
+                                                        <% return [day, month, year].join('/'); %>
+                                                    <% } %>
+                                                    <td><%= formatDate(billData.createdOn) %> </td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Transport Mode :</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Transport :</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Vehicle No. :</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr bb-none">
+                                                    <td class="br text-bold">L.R No. :</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-none bb-none">
+                        <table class="bt-none w-100">
+                            <thead>
+                                <th class="br">Sr.</th>
+                                <th class="br">Product Name</th>
+                                <th class="br">HSN</th>
+                                <th class="br">Qty.</th>
+                                <th class="br">Rate</th>
+                                <th class="br">Amount</th>
+                                <th class="br">Tax(%)</th>
+                                <th class="br">Tax(Amount)</th>
+                                <th >Net Amt.</th>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i<billData.products.length; i++){ %>
+                                    <% const data = billData.products[i]; %>
+                                    <tr class="bb-none">
+                                        <td class="bordered bl-none text-center"><%= i+1 %> </td>
+                                        <td class="bordered text-center"><%= data.name %></td>
+                                        <td class="bordered text-center"><%= data.hsn %></td>
+                                        <td class="bordered text-center"><%= data.quantity %></td>
+                                        <td class="bordered text-center"><%= data.rate %></td>
+                                        <td class="bordered text-center"><%= data.amount %></td>
+                                        <td class="bordered text-center"><%= data.tax %></td>
+                                        <td class="bordered text-center"><%= data.taxAmount %></td>
+                                        <td class="bordered text-center"><%= data.netAmount %></td>
+                                    </tr>
+                                <% } %>
+                                <tr>
+                                <% for(let i=0; i<15; i++){ %>
+                                    <tr class="bb-none">
+                                        <% for(let j=0; j<9; j++){ %>
+                                            <td class="br" style="height: 27px;"></td>
+                                        <% } %>
+                                    </tr>
+                                <% } %>
+                                <tr class="bb-none">
+                                    <td class="bordered bb-none bl-none"></td>
+                                    <td class="bordered bb-none bl-none">Total</td>
+                                    <td class="bordered bb-none bl-none"></td>
+                                    <td class="bordered bb-none bl-none"><%= billData.totalQuantity %></td>
+                                    <td class="bordered bb-none bl-none"></td>
+                                    <td class="bordered bb-none bl-none"><%= billData.totalAmount %></td>
+                                    <td class="bordered bb-none bl-none"></td>
+                                    <td class="bordered bb-none bl-none"><%= billData.totalTaxAmount %></td>
+                                    <td class="bordered bb-none bl-none"><%= billData.totalNetAmount %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <%
+                    const a = ['','One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
+                    const b = ['', '', 'Twenty','Thirty','Forty','Fifty', 'Sixty','Seventy','Eighty','Ninety'];
+
+                    function inWords (num) {
+                        if ((num = num.toString()).length > 9) return 'overflow';
+                        n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                        if (!n) return; var str = '';
+                        str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+                        str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+                        str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+                        str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+                        str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Only ' : '';
+                        return str;
+                    }
+                %>
+                <tr class="last-grid">
+                    <td class="p-none bt-none bb-none">
+                        <table class="bt-none w-100 bb-none">
+                            <tbody>
+                                <tr class="bb-none">
+                                    <td style="vertical-align: top; height: 100%;" class="p-none br bb-none">
+                                        <table class="w-100 h-10">
+                                            <tbody>
+                                                <tr class="bb-none">
+                                                    <td class="p-none main-grid br h-100 br-none">
+                                                        <div class="first-div bb p-2">
+                                                            <span class="font-bold"> Rs. (in words)</span> : <%= inWords(billData.totalNetAmount) %>
+                                                        </div>
+                                                        <div class="second-div bb p-2">
+                                                            Bank: HDFC BANK,<br>
+                                                            Address: VERAVAL MAIN ROAD, SHAPAR,<br>
+                                                            Account No : 59209427221690,<br>
+                                                            IFSC CODE : HDFC0002149
+                                                        </div>
+                                                        <div style="border-bottom: none;" class="third-div p-2">
+                                                            GSTIN: 24ACXPM4793R1ZB
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td style="height: 100%; vertical-align: top;" class="p-none br bl-none">
+                                        <table class="w-100 h-100">
+                                            <tbody>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Total</td>
+                                                    <td><%= billData.totalAmount %></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Discount</td>
+                                                    <td>0.00</td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Tax</td>
+                                                    <td><%= billData.totalTaxAmount %></td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Extra charge</td>
+                                                    <td>0.00</td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Round off</td>
+                                                    <td>0.00</td>
+                                                </tr>
+                                                <tr class="second-inner-grid-tr">
+                                                    <td class="br text-bold">Total Amount :</td>
+                                                    <td class="text-bold"><%= billData.totalNetAmount %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="last-grid">
+                    <td class="p-none bt-none bb-none">
+                        <table class="bt-none w-100 bb-none">
+                            <tbody>
+                                <tr class="bb-none">
+                                    <td style="vertical-align: top; height: 100%;" class="p-none br bb-none">
+                                        <table class="w-100 h-10">
+                                            <tbody>
+                                                <tr class="bb-none">
+                                                    <td class="p-none main-grid br h-100 br-none">
+                                                        <div class="p-2">
+                                                            <strong class="text-bold">Terms & Conditions :</strong><br>
+                                                            1. Goods once sold will not be taken back. <br>
+                                                            2. " Subject to Rajkot" Jurisdiction Only. E.&O.E.
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td style="height: 100%; vertical-align: top;" class="p-none br bl-none">
+                                        <table class="w-100 h-100">
+                                            <tbody>
+                                                <tr class="bb-none">
+                                                    <td class="text-center">
+                                                        <div>
+                                                            <p style="margin-bottom: 60px;">MALLINATH JEWELLERS</p>
+                                                            <p>(Authorised Signature)</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

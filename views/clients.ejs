@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        table th, td{
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 480px) {
+            body{
+                padding: 0 !important;
+                margin-left: 20px;
+                margin-top: 20px;
+                align-items: flex-start !important;
+            }
+
+            body h1{
+                margin-bottom: 20px !important;
+            }
+
+            .card-body{
+              padding: 0 !important;
+              padding-top: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; padding: 50px;">
+    <h1 class="mb-5">List of Clients</h1>
+    <a href="/">
+        <button class="btn btn-info">Home</button>
+    </a>
+    <div>
+        <div class="row">
+          <div>
+            <div class="card rounded shadow border-0">
+              <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                  <table id="example" style="width:100%" class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Sr No.</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Mobile</th>
+                        <th>GST No.</th>
+                        <th>City</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% clientsList.map((client, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %> </td>
+                            <td><%= client.name %></td>
+                            <td><%= client.address %></td>
+                            <td><%= client.mobile %></td>
+                            <td><%= client.gstNumber %> </td>
+                            <td><%= client.placeOfSupply %> </td>
+                            <td style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px;">
+                                <a href="/client/edit/<%= client._id %>">
+                                    <button class="btn btn-info">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </a>
+                                <form method="POST" action = "/client/delete/<%= client._id %>">
+                                  <button class="btn btn-danger" type="submit">
+                                      <i class="fas fa-trash"></i>
+                                  </button>
+                                </form>
+                            </td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js" integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(function() {
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    });
+</script>
+</html>
