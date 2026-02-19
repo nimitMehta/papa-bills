@@ -130,7 +130,9 @@ app.post('/download/:billId', async (req, res) => {
     var content = fs.readFileSync("./views/download.ejs", "utf8");
     content = ejs.render(content, { billData, client });
     const { createGzip } = require("zlib");
-    var filename = "test.pdf";
+    const safeClientName = (client.name || "client").replace(/\s+/g, "_").replace(/[/\\?%*:|"<>]/g, "");
+    const safeInvoiceNumber = (billData.invoiceNumber || "").replace(/\//g, "_");
+    var filename = `${safeClientName}_${safeInvoiceNumber}.pdf`;
     res.writeHead(200, {
         "Content-Type": "application/pdf; charset=utf-8",
         "Content-Disposition": "attachment; filename=" + filename + "",
