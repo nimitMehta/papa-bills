@@ -250,5 +250,5 @@ app.post('/client/delete/:clientId', async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, (req, res) => {
-    console.log('Server has Started');
+    console.log('Server has Started on port ' + (process.env.PORT || 3000) + '!!!');
 });
